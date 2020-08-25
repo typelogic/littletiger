@@ -7,7 +7,7 @@ Please install the sdkman cli utility. I already have Java 1.8.0_265 in my Ubunt
 
 Initial steps:
 
-- sdk install spring
+- sdk install springboot
 - sdk install maven
 - spring init --dependencies=web littletiger
 - cd littletiger
