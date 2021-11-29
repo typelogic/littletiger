@@ -12,6 +12,7 @@ Initial steps:
 - spring init --dependencies=web littletiger
 - cd littletiger
 - vi pom.xml # I had to edit 11 to 8 because I have Java 8
+- `docker run --name mydb -d -p 5432:5432 -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -d postgres`
 - mvn spring-boot:run
 
 After the above steps, you now have a listening but empty REST endpoint at localhost:8080.
@@ -35,3 +36,22 @@ Minor difficulties encountered:
 
 In conclusion, the IDE's only helped was on the statement auto-completion. Basically, everything can be done in vim and I'm stating this 
 because some Java projects out there only works on their respective IDE. 
+
+## Setup Required Database
+
+If you refer to `src/main/resources/application.yml`, you will see that we need a `testdb` database.
+
+```
+# Spawn a postgres container with a blank database testdb
+docker run --name mydb -d -p 5432:5432 -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -d postgres
+
+# Miscellaneuos tips. Enter into container as postgress user
+docker exec -it -u postgres mydb sh
+psql
+\l
+\c testdb
+\d
+\d testdb
+select * from person
+quit
+```
